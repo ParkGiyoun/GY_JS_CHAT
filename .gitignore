@@ -1,2 +1,7 @@
 # API KEY ignore
 key/
+api_browse.js
+
+node_modules/
+package-lock.json
+package.json
