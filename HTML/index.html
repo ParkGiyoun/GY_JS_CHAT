@@ -6,6 +6,39 @@
     <title>GY - Chat</title>
 </head>
 <body>
+    <h1 class="">GY - chat!!</h1>
+    <form id="form" method="POST" action="/ask">
+        <input type="text" id="question" name="question" placeholder="질문">
+        <button type="submit">제출</button>
+    </form>
+    <div id="answer">
+        
+    </div>
+
+    <script>
+    const form = document.getElementById("form");
+    const question = document.getElementById("question");
+    const answer = document.getElementById("answer");
     
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch("/ask", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                question: question.value,
+            }),
+        })
+        .then((res) => res.text())
+        .then((data) => {
+            answer.textContent = data;
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+    });
+    </script>
 </body>
 </html>
